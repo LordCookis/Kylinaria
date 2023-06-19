@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { services } from "@/services"
 import Image from "next/image"
 import Link from "next/link"
+import Loading from "@/components/Loading"
 
 export default function MainPage() {
   const thisObject = useQuery({
@@ -21,6 +22,7 @@ export default function MainPage() {
           </div>
         </div>
       </Link>).reverse()}
+      {(thisObject.isFetching) && <Loading/>}
     </div>
   )
 }

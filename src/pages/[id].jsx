@@ -5,6 +5,7 @@ import { services } from "@/services"
 import { useMutation } from "@tanstack/react-query"
 import Image from "next/image"
 import Link from "next/link"
+import Loading from "@/components/Loading"
 
 export default function ObjectPage() {
   const session = useQuery({
@@ -60,6 +61,7 @@ export default function ObjectPage() {
   const uploadImage = async(e) => setImage(e.target.files[0])
 
   return(
+    <>
     <div className="ObjectPage">
       <div>
         <div className="PriceDiv">
@@ -98,5 +100,7 @@ export default function ObjectPage() {
         </div>
       </div>
     </div>
+    {(thisObject.isFetching || sendUpdate.isLoading) && <Loading/>}
+    </>
   )
 }

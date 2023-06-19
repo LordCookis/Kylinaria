@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { services } from "@/services"
+import Loading from "@/components/Loading"
 
 export default function AddObject() {
 	const [object, setObject] = useState({

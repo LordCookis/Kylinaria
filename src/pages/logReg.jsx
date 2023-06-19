@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { services } from '@/services'
+import Loading from '@/components/Loading'
 
 export default function LogReg() {
   const [login, setLogin] = useState("")
@@ -63,6 +64,7 @@ export default function LogReg() {
 				<button className="Button">ВЫЙТИ</button>
 			</form>
 		</div>}
+		{(session.isFetching) && <Loading/>}
 		</>
 	)
 }
