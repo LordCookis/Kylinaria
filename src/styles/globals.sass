@@ -34,6 +34,7 @@ a
     transition: 200ms
     &>img
       border-radius: 10px 10px 0px 0px
+      object-fit: cover
     .ObjectText
       margin: 5px
       display: flex
@@ -49,56 +50,138 @@ a
   margin: 10px
   padding: 10px
   display: flex
-  flex-direction: column
-  align-items: center
-  .ObjectInput
-    width: 575px
+  flex-direction: row
+  justify-content: space-evenly
+  .PriceDiv
+    margin-left: 30px 
+    display: flex
+    align-items: center
+    .SpanTime
+      width: 330px
+      color: #fff5ea
+      font-family: 'Verdana'
+      font-size: 40px
+    .Span
+      width: 50px
+      color: #fff5ea
+      font-family: 'Verdana'
+      font-size: 40px
+    .InputPrice
+      width: 100px
+      padding: 10px
+      display: flex
+      text-align: center
+      background-color: #304a8b00
+      border: none
+      border-radius: 10px 
+      color: #fff5ea
+      font-family: 'Verdana'
+      font-size: 40px
+      transition: 150ms
+      outline: none
+      &::placeholder
+        color: #7d91c4
+  .Textarea
+    height: 750px
+    width: 600px
     padding: 10px
     margin: 10px
     display: flex
-    text-align: center
-    background-color: #00000000
-    border: 3px #fff5ea solid
+    text-align: justify
+    background-color: #304a8b
+    border: none
     border-radius: 10px 
-    color: #000000
+    color: #fff5ea
     font-family: 'Verdana'
-    font-size: 45px
+    font-size: 20px
     transition: 150ms
     outline: none
+    resize: none
     &::placeholder
-      color: #fff5ea
-  .ObjectButton
-    width: 575px
-    padding: 10px
-    margin: 10px
+      color: #7d91c4
+  .RightDiv
     display: flex
-    justify-content: center
-    background-color: #00000000
-    border: 3px #fff5ea solid
-    border-radius: 10px 
-    color: #000000
-    font-size: 25px
-    transition: 150ms
-    outline: none
-    &:hover
-      color: #fff5ea
-  .AdminPanel
+    flex-direction: column
+    justify-content: space-between
+  .ExitDiv
     display: flex
-    .AdminButton
-      width: 290px
+    justify-content: flex-end
+    .Button
+      width: 200px
       padding: 10px
       margin: 10px
       display: flex
       justify-content: center
-      background-color: #00000000
-      border: 3px #fff5ea solid
+      background-color: #304a8b
+      border: none
       border-radius: 10px 
-      color: #000000
-      font-size: 25px
+      color: #fff5ea
+      font-size: 40px
       transition: 150ms
       outline: none
       &:hover
+        color: #7d91c4
+  .InfoDiv
+    margin-top: 20px 
+    display: flex
+    flex-direction: column
+    align-items: center
+    .ImageDiv
+      border: 10px
+      &>img
+        border-radius: 10px
+        object-fit: cover
+    .InputName
+      width: 600px
+      padding: 10px
+      display: flex
+      text-align: center
+      background-color: #304a8b00
+      border: none
+      border-radius: 10px 
+      color: #fff5ea
+      font-family: 'Verdana'
+      font-size: 40px
+      transition: 150ms
+      outline: none
+      &::placeholder
+        color: #7d91c4
+    .AdminPanel
+      display: flex
+      .InputImage
+        height: 40px
+        width: 360px
+        padding: 10px
+        margin: 10px
+        display: flex
+        justify-content: center
+        background-color: #304a8b
+        border: none
+        border-radius: 10px 
         color: #fff5ea
+        font-size: 30px
+        transition: 150ms
+        outline: none
+        &:hover
+          color: #7d91c4
+        &::before
+          content: ""
+      .Button
+        height: 60px
+        width: 300px
+        padding: 10px
+        margin: 10px
+        display: flex
+        justify-content: center
+        background-color: #304a8b
+        border: none
+        border-radius: 10px 
+        color: #fff5ea
+        font-size: 35px
+        transition: 150ms
+        outline: none
+        &:hover
+          color: #7d91c4
 
 .AddObjectPage
   margin: 5px
@@ -142,6 +225,44 @@ a
     transition: 150ms
     outline: none
     resize: none
+    &::placeholder
+      color: #7d91c4
+  .Button
+    width: 620px
+    padding: 10px
+    margin: 10px
+    display: flex
+    justify-content: center
+    background-color: #304a8b
+    border: none
+    border-radius: 10px 
+    color: #fff5ea
+    font-size: 40px
+    transition: 150ms
+    outline: none
+    &:hover
+      color: #7d91c4
+
+.LogRegPage
+  margin-top: 20px 
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .Input
+    width: 600px
+    padding: 10px
+    margin: 10px
+    display: flex
+    text-align: center
+    background-color: #304a8b
+    border: none
+    border-radius: 10px 
+    color: #fff5ea
+    font-family: 'Verdana'
+    font-size: 40px
+    transition: 150ms
+    outline: none
     &::placeholder
       color: #7d91c4
   .Button

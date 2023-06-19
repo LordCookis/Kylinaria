@@ -2,7 +2,7 @@ import { supabase } from '../supabaseClient'
 
 export const logRegServices = {
     async add(login, password){
-        const { data, error } = await supabase.from('Admins').select().eq("login", login)
+        const { data } = await supabase.from('Admins').select().eq("login", login)
         if (data.length) {
             throw new Error("Администратор уже есть")
         }
@@ -12,15 +12,12 @@ export const logRegServices = {
         if (!login) {
             return false
         }
-        const { data, error } = await supabase.from('Admins').select().eq("login", login)
+        const { data } = await supabase.from('Admins').select().eq("login", login)
         if (!data.length) {
             throw new Error("Логина нет")
         }
         if (data[0].password !== password) { 
             throw new Error("Пароль не верный")
-        }
-        if (error) {
-            throw new Error("Ошибка")
         }
         return true
     },

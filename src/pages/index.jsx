@@ -14,7 +14,7 @@ export default function MainPage() {
       {thisObject.data?.map((item) => 
       <Link href={`./${item.id}`} key={item.id}>
         <div className="Object">
-          <Image src={item.image} height={200} width={300} alt=""/>
+          <Image src={item.image} height={200} width={350} alt=""/>
           <div className="ObjectText">
             <span className="ObjectSpan">{item.name}</span>
             <span className="ObjectSpan">Время готовки - {item.price} минут</span>

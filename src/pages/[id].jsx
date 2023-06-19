@@ -7,10 +7,10 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function ObjectPage() {
-  //const session = useQuery({
-  //  queryKey: ['session'],
-  //  queryFn: () => console.log()
-  //})
+  const session = useQuery({
+    queryKey: ['session'],
+    queryFn: () => console.log()
+  })
 
   const [object, setObject] = useState({
     name: "",
@@ -36,7 +36,7 @@ export default function ObjectPage() {
   const editObject = async() => {
     sendUpdate.mutate()
 		setEditState(false)
-    console.log(object)
+    console.log(image)
   }
 
   const sendUpdate = useMutation({
@@ -61,25 +61,41 @@ export default function ObjectPage() {
 
   return(
     <div className="ObjectPage">
-      <Image src={object.image} height={400} width={600} alt=""/>
-      <input className="ObjectInput" value={object.name} onChange={(e)=>setObject({...object, name: e.target.value})} disabled={!editState} autoComplete="off"/>
-      <textarea className="ObjectInput" value={object.description} onChange={(e)=>setObject({...object, description: e.target.value})} disabled={!editState} autoComplete="off"/>
-      <input className="ObjectInput" value={object.price} disabled={!editState} onChange={(e)=>setObject({...object, price: e.target.value})} autoComplete="off"/>
-      <Link className="ObjectButton" href="/">ЗАКРЫТЬ</Link>
-      <div className="AdminPanel">
-        {!editState
-        ?
-        <>
-        <button className="AdminButton" onClick={()=>setEditState(true)}>ИЗМЕНИТЬ</button>
-        <button className="AdminButton" onClick={delObject}>УДАЛИТЬ</button>
-        </>
-        :
-        <>
-        <input name={object.image} type="file" onChange={uploadImage} autoComplete="off"/>
-        <button className="AdminButton" onClick={editObject}>ПОДТВЕРДИТЬ</button>
-        <button className="AdminButton" onClick={cansel}>ОТМЕНИТЬ</button>
-        </>
-        }
+      <div>
+        <div className="PriceDiv">
+          <span className="SpanTime">Время готовки: </span>
+          <input className="InputPrice" value={object.price} disabled={!editState} onChange={(e)=>setObject({...object, price: e.target.value})} autoComplete="off"/>
+          <span className="Span"> минут</span>
+        </div>
+        <textarea className="Textarea" value={object.description} onChange={(e)=>setObject({...object, description: e.target.value})} disabled={!editState} autoComplete="off"/>
+      </div>
+      <div className="RightDiv">
+        <div className="InfoDiv">
+          <div className="ImageDiv">
+            <Image src={object.image} height={600} width={1050} alt=""/>
+          </div>
+          <input className="InputName" value={object.name} onChange={(e)=>setObject({...object, name: e.target.value})} disabled={!editState} autoComplete="off"/>
+          <div className="AdminPanel">
+            {session.data ?
+            !editState
+            ?
+            <>
+            <button className="Button" onClick={()=>setEditState(true)}>ИЗМЕНИТЬ</button>
+            <button className="Button" onClick={delObject}>УДАЛИТЬ</button>
+            </>
+            :
+            <>
+            <input className="InputImage" name={object.image} type="file" onChange={uploadImage} autoComplete="off"/>
+            <button className="Button" onClick={editObject}>ПОДТВЕРДИТЬ</button>
+            <button className="Button" onClick={cansel}>ОТМЕНИТЬ</button>
+            </>
+            :
+            <></>}
+          </div>
+        </div>
+        <div className="ExitDiv">
+          <Link className="Button" href="/">ЗАКРЫТЬ</Link>
+        </div>
       </div>
     </div>
   )

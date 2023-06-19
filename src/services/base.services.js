@@ -4,10 +4,10 @@ export const baseServices = {
     async add(object, image){
         const date = new Date() 
         const filename = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${image.name}`
-        const { data1, error1 } = await supabase
+        const { data1 } = await supabase
             .from("Objects")
             .insert({name: object.name, description: object.description, image: filename, price: object.price})
-        const { data2, error2 } = await supabase.storage
+        const { data2 } = await supabase.storage
             .from("Images")
             .upload(filename, image, {
             cacheControl: "3600",
@@ -18,27 +18,32 @@ export const baseServices = {
     },
     async del(id){
         const { data } = await supabase.from("Objects").delete().eq("id", id)
-        console.log("del response: ", data)
     },
     async upd(id, object, image){
-        const date = new Date() 
-        console.log("object: ", object)
-        console.log("id: ", id)
-        const filename = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${image.name}`
-        const { data } = await supabase.from("Objects").update({
-            name: object.name,
-            description: object.description,
-            image: filename,
-            price: object.price
-        }).eq('id', id)
-        const { data2, error2 } = await supabase.storage
-            .from("Images")
-            .upload(filename, image, {
-            cacheControl: "3600",
-            upsert: false
-        })
-        console.log("update response: ", data)
-        console.log("2", object.image)
+        if (image.length != 0) {
+            const date = new Date() 
+            console.log("object: ", object)
+            console.log("id: ", id)
+            const filename = `${date.getHours()}${date.getMinutes()}${date.getSeconds()}-${image.name}`
+            const { data1 } = await supabase.from("Objects").update({
+                name: object.name,
+                description: object.description,
+                image: filename,
+                price: object.price
+            }).eq('id', id)
+            const { data2 } = await supabase.storage
+                .from("Images")
+                .upload(filename, image, {
+                cacheControl: "3600",
+                upsert: false
+            })
+        } else {
+            const { data1 } = await supabase.from("Objects").update({
+                name: object.name,
+                description: object.description,
+                price: object.price
+            }).eq('id', id)
+        }
     },
     async objects(){
         const { data } = await supabase.from("Objects").select()
